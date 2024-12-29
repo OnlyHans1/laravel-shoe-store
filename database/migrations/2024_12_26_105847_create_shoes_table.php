@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('shoes', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('thumbnail');
+            $table->text('about');
+            $table->unsignedBigInteger('price');
+            $table->unsignedBigInteger('stock');
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
+            $table->boolean('is_popular');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
