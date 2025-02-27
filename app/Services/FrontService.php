@@ -18,10 +18,10 @@ class FrontService
         $this->shoeRepository = $shoeRepository;
     }
 
-    // public function searchShoes(string $keyword)
-    // {
-    //     return $this->shoeRepository->searchByName($keyword);
-    // }
+    public function searchShoes(string $keyword)
+    {
+        return $this->shoeRepository->searchByName($keyword);
+    }
 
     public function getFrontPageData()
     {
