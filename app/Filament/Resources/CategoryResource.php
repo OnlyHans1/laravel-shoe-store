@@ -24,12 +24,12 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                ->required()
-                ->maxLength(255),
+                    ->required()
+                    ->maxLength(255),
 
                 Forms\Components\FileUpload::make('icon')
-                ->image()
-                ->required(),
+                    ->image()
+                    ->required(),
             ]);
     }
 
@@ -38,10 +38,10 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                ->searchable(),
+                    ->searchable(),
 
                 Tables\Columns\ImageColumn::make('icon')
-                ->circular(),
+                    ->circular(),
             ])
             ->filters([
                 //

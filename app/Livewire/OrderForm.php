@@ -38,12 +38,15 @@ class OrderForm extends Component
 
     public function updateQuantity()
     {
-        $this->validateOnly('quantity', [
-            'quantity' => 'required|integer|min:1|max:' .$this->shoe->stock,
-        ],
-        [
-            'quantity.max' => 'Stock tidak tersedia!',
-        ]);
+        $this->validateOnly(
+            'quantity',
+            [
+                'quantity' => 'required|integer|min:1|max:' . $this->shoe->stock,
+            ],
+            [
+                'quantity.max' => 'Stock tidak tersedia!',
+            ]
+        );
         $this->calculateTotal();
     }
 
@@ -63,8 +66,8 @@ class OrderForm extends Component
 
     public function decrementQuantity()
     {
-        if ($this->quantity > 1){
-            $this->quantity++;
+        if ($this->quantity > 1) {
+            $this->quantity--;
             $this->calculateTotal();
         }
     }
@@ -101,6 +104,41 @@ class OrderForm extends Component
         $this->calculateTotal();
         $this->promoCodeId = null;
         $this->totalDiscountAmount = 0;
+    }
+
+    public function rules()
+    {
+        return [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'quantity' => 'required|integer|min:1|max:' . $this->shoe->stock,
+        ];
+    }
+
+    protected function gatherBookingData(array $validatedData): array
+    {
+        return [
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'grand_total_amount' => $this->grandTotalAmount,
+            'sub_total_amount' => $this->subTotalAmount,
+            'discount_amount' => $this->discount,
+            'discount' => $this->discount,
+            'promo_code' => $this->promoCode,
+            'promo_code_id' => $this->promoCodeId,
+            'quantity' => $this->quantity
+        ];
+    }
+
+    public function submit()
+    {
+        $validatedData = $this->validate();
+
+        $bookingData = $this->gatherBookingData($validatedData);
+
+        $this->orderService->updateCustomerData($bookingData);
+
+        return redirect()->route('front.customer_data');
     }
 
     public function render()

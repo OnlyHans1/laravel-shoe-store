@@ -231,7 +231,7 @@ class ProductTransactionResource extends Resource
                     ->send();
                 })
                 ->color('success')
-                ->requireConfirmation()
+                ->requiresConfirmation()
                 ->visible(fn (ProductTransaction $record) => !$record->is_paid),
             ])
             ->bulkActions([

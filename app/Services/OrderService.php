@@ -22,8 +22,7 @@ class OrderService
         CategoryRepositoryInterface $categoryRepository,
         OrderRepositoryInterface $orderRepository,
         ShoeRepositoryInterface $shoeRepository
-    )
-    {
+    ) {
         $this->promoCodeRepository = $promoCodeRepository;
         $this->categoryRepository = $categoryRepository;
         $this->orderRepository = $orderRepository;
@@ -39,6 +38,12 @@ class OrderService
         ];
 
         $this->orderRepository->saveToSession($orderData);
+    }
+
+    public function getMyOrderDetails(array $validated)
+    {
+        return $this->orderRepository->findByTrxIdAndPhoneNumber($validated['booking_trx_id'],
+        $validated['phone']);
     }
 
     public function getOrderDetails()
@@ -95,35 +100,43 @@ class OrderService
 
         $productTransactionId = null;
 
-        try{
-            DB::transaction(function() use ($validated, &$productTransactionId, $orderData) {
+        try {
+            DB::transaction(function () use ($validated, &$productTransactionId, $orderData) {
                 if (isset($validated['proof'])) {
                     $proofPath = $validated['proof']->store('proofs', 'public');
                     $validated['proof'] = $proofPath;
                 }
+                $validated['name'] = $orderData['name'] ?? null;
+                $validated['email'] = $orderData['email'] ?? null;
+                $validated['phone'] = $orderData['phone'] ?? null;
+                $validated['address'] = $orderData['address'] ?? null;
+                $validated['post_code'] = $orderData['post_code'] ?? null;
+                $validated['city'] = $orderData['city'] ?? null;
+                $validated['quantity'] = $orderData['quantity'] ?? 1;
+                $validated['sub_total_amount'] = $orderData['sub_total_amount'] ?? 0;
+                $validated['grand_total_amount'] = $orderData['grand_total_amount'] ?? 0;
 
-                $validated['name'] = $orderData['name'];
-                $validated['email'] = $orderData['email'];
-                $validated['phone'] = $orderData['phone'];
-                $validated['address'] = $orderData['address'];
-                $validated['post_code'] = $orderData['post_code'];
-                $validated['city'] = $orderData['city'];
-                $validated['quantity'] = $orderData['quantity'];
-                $validated['sub_total_amount'] = $orderData['sub_total_amount'];
-                $validated['grand_total_amount'] = $orderData['grand_total_amount'];
-                $validated['discount_amount'] = $orderData['discount_amount'];
-                $validated['promo_code_id'] = $orderData['promo_code_id'];
-                $validated['shoe_id'] = $orderData['shoe_id'];
-                $validated['shoe_size'] = $orderData['size_id'];
+                $validated['discount_amount'] = $orderData['discount'] ?? ($orderData['discount_amount'] ?? 0);
+                $validated['promo_code_id'] = $orderData['promo_code_id'] ?? null;
+
+                $validated['shoe_id'] = $orderData['shoe_id'] ?? null;
+                $validated['shoe_size'] = $orderData['size_id'] ?? ($orderData['shoe_size'] ?? null);
                 $validated['is_paid'] = false;
                 $validated['booking_trx_id'] = ProductTransaction::generateUniqueTrxId();
 
-                $newTransaction = $this->orderRepository->createTransaction($validated);
+                $requiredFields = ['name', 'email', 'phone', 'address', 'shoe_id', 'shoe_size'];
+                foreach ($requiredFields as $field) {
+                    if (empty($validated[$field])) {
+                        throw new \Exception("Missing required field: {$field}");
+                    }
+                }
 
+                $newTransaction = $this->orderRepository->createTransaction($validated);
                 $productTransactionId = $newTransaction->id;
             });
         } catch (\Exception $e) {
             Log::error('Error in payment confirmation: ' . $e->getMessage());
+            Log::error($e->getTraceAsString());
             session()->flash('error', $e->getMessage());
             return null;
         }

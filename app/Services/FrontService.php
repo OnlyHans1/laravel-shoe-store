@@ -13,8 +13,7 @@ class FrontService
     public function __construct(
         ShoeRepositoryInterface $shoeRepository,
         CategoryRepositoryInterface $categoryRepository
-    )
-    {
+    ) {
         $this->categoryRepository = $categoryRepository;
         $this->shoeRepository = $shoeRepository;
     }
