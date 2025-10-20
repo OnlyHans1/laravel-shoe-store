@@ -18,14 +18,6 @@ SepatuStore adalah aplikasi web e-commerce modern untuk penjualan sepatu online 
 - **Kode Promo** - Sistem diskon dan voucher
 - **Manajemen Pengguna** - Pengelolaan data customer
 
-### 🛠️ Fitur Teknis
-- **Repository Pattern** - Arsitektur yang bersih dan maintainable
-- **Service Layer** - Pemisahan logic bisnis
-- **Livewire Components** - Interaktivitas real-time
-- **Vite Build System** - Modern development workflow
-- **Tailwind CSS** - Responsive dan modern UI
-- **SQLite Database** - Database ringan untuk development
-
 ## 📋 Struktur Database
 
 ### Model Utama:
@@ -106,26 +98,6 @@ SepatuStore adalah aplikasi web e-commerce modern untuk penjualan sepatu online 
    npm run dev
    ```
 
-## 🚀 Menjalankan Aplikasi
-
-### Development Mode
-```bash
-# Menggunakan Laravel development server
-php artisan serve
-
-# Menggunakan Laravel Sail (Docker)
-./vendor/bin/sail up
-```
-
-### Production Mode
-```bash
-# Build untuk production
-npm run build
-
-# Serve dengan optimasi
-php artisan serve --host=0.0.0.0 --port=8000
-```
-
 ## 📖 Penggunaan
 
 ### Akses Admin Panel
@@ -195,45 +167,6 @@ sepatustorebwa/
 ├── storage/                   # File storage
 └── tests/                     # Test files
 ```
-
-## 🤝 Contributing
-
-1. Fork project ini
-2. Buat feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
-5. Buat Pull Request
-
-## 📝 Lisensi
-
-Project ini menggunakan lisensi MIT. Lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
-
-## 🆘 Troubleshooting
-
-### Masalah Umum:
-
-**Error: Database connection failed**
-- Pastikan file `database.sqlite` ada
-- Jalankan `php artisan migrate:fresh`
-
-**Error: Vite build failed**
-- Jalankan `npm install` untuk menginstall dependencies
-- Pastikan Node.js versi 18+ terinstall
-
-**Error: Permission denied (storage/logs)**
-```bash
-chmod -R 775 storage
-chmod -R 775 bootstrap/cache
-```
-
-## 📞 Support
-
-Jika Anda mengalami masalah atau memiliki pertanyaan:
-
-1. Buka issue di repository ini
-2. Check dokumentasi Laravel: https://laravel.com/docs
-3. Check dokumentasi FilamentPHP: https://filamentphp.com/docs
-
 ---
 
 **SepatuStore** - Aplikasi toko sepatu modern untuk bisnis Anda! 👟✨
