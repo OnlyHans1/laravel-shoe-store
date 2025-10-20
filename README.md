@@ -1,66 +1,239 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SepatuStore - Toko Sepatu Online
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel](https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php)](https://php.net)
+[![Filament](https://img.shields.io/badge/Filament-3.x-1f2937?style=for-the-badge&logo=filament)](https://filamentphp.com)
 
-## About Laravel
+SepatuStore adalah aplikasi web e-commerce modern untuk penjualan sepatu online yang dibangun menggunakan Laravel 11 dan FilamentPHP. Aplikasi ini menyediakan platform lengkap untuk mengelola toko sepatu dengan fitur admin panel yang powerful dan user-friendly.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### ✨ Fitur Admin (FilamentPHP)
+- **Dashboard Analytics** - Ringkasan penjualan dan statistik toko
+- **Manajemen Produk** - CRUD lengkap untuk sepatu dengan multiple foto
+- **Manajemen Kategori** - Pengelolaan kategori sepatu
+- **Manajemen Brand** - Pengelolaan merek sepatu
+- **Manajemen Ukuran** - Pengelolaan variasi ukuran sepatu
+- **Manajemen Transaksi** - Tracking dan pengelolaan pesanan
+- **Kode Promo** - Sistem diskon dan voucher
+- **Manajemen Pengguna** - Pengelolaan data customer
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🛠️ Fitur Teknis
+- **Repository Pattern** - Arsitektur yang bersih dan maintainable
+- **Service Layer** - Pemisahan logic bisnis
+- **Livewire Components** - Interaktivitas real-time
+- **Vite Build System** - Modern development workflow
+- **Tailwind CSS** - Responsive dan modern UI
+- **SQLite Database** - Database ringan untuk development
 
-## Learning Laravel
+## 📋 Struktur Database
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Model Utama:
+- `User` - Data pengguna dan customer
+- `Shoe` - Produk sepatu utama
+- `Brand` - Merek sepatu
+- `Category` - Kategori sepatu
+- `ShoeSize` - Variasi ukuran sepatu
+- `ShoePhoto` - Galeri foto produk
+- `ProductTransaction` - Data transaksi pembelian
+- `PromoCode` - Kode diskon dan voucher
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🛠️ Tech Stack
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend**: Laravel 11.x (PHP 8.2+)
+- **Frontend**: Livewire, Tailwind CSS
+- **Admin Panel**: FilamentPHP 3.x
+- **Build Tool**: Vite
+- **Database**: SQLite (default)
+- **Development**: Laravel Sail (Docker)
 
-## Laravel Sponsors
+## 📦 Instalasi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Prerequisites
+- PHP 8.2 atau lebih tinggi
+- Composer
+- Node.js & npm
+- Git
 
-### Premium Partners
+### Langkah Instalasi
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. **Clone Repository**
+   ```bash
+   git clone <repository-url>
+   cd sepatustorebwa
+   ```
 
-## Contributing
+2. **Install PHP Dependencies**
+   ```bash
+   composer install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Install Node Dependencies**
+   ```bash
+   npm install
+   ```
 
-## Code of Conduct
+4. **Setup Environment**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Database Setup**
+   ```bash
+   # Untuk SQLite (default)
+   touch database/database.sqlite
 
-## Security Vulnerabilities
+   # Untuk MySQL (opsional)
+   # Update konfigurasi DB di file .env
+   # DB_CONNECTION=mysql
+   # DB_HOST=127.0.0.1
+   # DB_PORT=3306
+   # DB_DATABASE=sepatustore
+   # DB_USERNAME=your_username
+   # DB_PASSWORD=your_password
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. **Run Migrations**
+   ```bash
+   php artisan migrate
+   ```
 
-## License
+7. **Build Assets**
+   ```bash
+   npm run build
+   # atau untuk development
+   npm run dev
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🚀 Menjalankan Aplikasi
+
+### Development Mode
+```bash
+# Menggunakan Laravel development server
+php artisan serve
+
+# Menggunakan Laravel Sail (Docker)
+./vendor/bin/sail up
+```
+
+### Production Mode
+```bash
+# Build untuk production
+npm run build
+
+# Serve dengan optimasi
+php artisan serve --host=0.0.0.0 --port=8000
+```
+
+## 📖 Penggunaan
+
+### Akses Admin Panel
+1. Buka browser dan akses: `http://localhost:8000/admin`
+2. Login dengan kredensial default atau buat user admin baru
+3. Kelola produk, kategori, brand, dan transaksi melalui dashboard
+
+### Development Commands
+```bash
+# Menjalankan semua services (server, queue, logs, vite)
+composer run dev
+
+# Menjalankan tests
+php artisan test
+
+# Code formatting
+./vendor/bin/pint
+
+# Generate API documentation (jika ada)
+php artisan scribe:generate
+```
+
+## 🔧 Konfigurasi
+
+### Environment Variables (.env)
+```env
+APP_NAME="SepatuStore"
+APP_ENV=local
+APP_KEY=base64:your-key-here
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=sqlite
+# DB_CONNECTION=mysql (untuk MySQL)
+
+MAIL_MAILER=log
+# MAIL_MAILER=smtp (untuk email)
+
+VITE_APP_NAME="${APP_NAME}"
+```
+
+### File Konfigurasi Penting
+- `config/filament.php` - Konfigurasi admin panel
+- `tailwind.config.js` - Konfigurasi styling
+- `vite.config.js` - Konfigurasi build tool
+
+## 📁 Struktur Project
+
+```
+sepatustorebwa/
+├── app/
+│   ├── Filament/Resources/     # Admin panel resources
+│   ├── Http/Controllers/       # HTTP controllers
+│   ├── Livewire/              # Livewire components
+│   ├── Models/                # Eloquent models
+│   ├── Repositories/          # Repository pattern
+│   └── Services/              # Business logic services
+├── database/
+│   ├── migrations/            # Database migrations
+│   └── seeders/               # Database seeders
+├── public/                    # Public assets
+├── resources/
+│   ├── css/                   # Custom CSS
+│   ├── js/                    # JavaScript files
+│   └── views/                 # Blade templates
+├── routes/                    # Route definitions
+├── storage/                   # File storage
+└── tests/                     # Test files
+```
+
+## 🤝 Contributing
+
+1. Fork project ini
+2. Buat feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+## 📝 Lisensi
+
+Project ini menggunakan lisensi MIT. Lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
+
+## 🆘 Troubleshooting
+
+### Masalah Umum:
+
+**Error: Database connection failed**
+- Pastikan file `database.sqlite` ada
+- Jalankan `php artisan migrate:fresh`
+
+**Error: Vite build failed**
+- Jalankan `npm install` untuk menginstall dependencies
+- Pastikan Node.js versi 18+ terinstall
+
+**Error: Permission denied (storage/logs)**
+```bash
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
+```
+
+## 📞 Support
+
+Jika Anda mengalami masalah atau memiliki pertanyaan:
+
+1. Buka issue di repository ini
+2. Check dokumentasi Laravel: https://laravel.com/docs
+3. Check dokumentasi FilamentPHP: https://filamentphp.com/docs
+
+---
+
+**SepatuStore** - Aplikasi toko sepatu modern untuk bisnis Anda! 👟✨
