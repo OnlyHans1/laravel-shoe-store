@@ -105,45 +105,6 @@ SepatuStore adalah aplikasi web e-commerce modern untuk penjualan sepatu online 
 2. Login dengan kredensial default atau buat user admin baru
 3. Kelola produk, kategori, brand, dan transaksi melalui dashboard
 
-### Development Commands
-```bash
-# Menjalankan semua services (server, queue, logs, vite)
-composer run dev
-
-# Menjalankan tests
-php artisan test
-
-# Code formatting
-./vendor/bin/pint
-
-# Generate API documentation (jika ada)
-php artisan scribe:generate
-```
-
-## 🔧 Konfigurasi
-
-### Environment Variables (.env)
-```env
-APP_NAME="SepatuStore"
-APP_ENV=local
-APP_KEY=base64:your-key-here
-APP_DEBUG=true
-APP_URL=http://localhost:8000
-
-DB_CONNECTION=sqlite
-# DB_CONNECTION=mysql (untuk MySQL)
-
-MAIL_MAILER=log
-# MAIL_MAILER=smtp (untuk email)
-
-VITE_APP_NAME="${APP_NAME}"
-```
-
-### File Konfigurasi Penting
-- `config/filament.php` - Konfigurasi admin panel
-- `tailwind.config.js` - Konfigurasi styling
-- `vite.config.js` - Konfigurasi build tool
-
 ## 📁 Struktur Project
 
 ```
